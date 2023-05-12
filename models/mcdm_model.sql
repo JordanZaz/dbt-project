@@ -35,7 +35,7 @@ SELECT
     add_to_cart,
     clicks,
     comments,
-    NULL AS engagements,
+    (clicks + likes + comments + shares + views) AS engagements,
     impressions,
     NULL AS installs,
     likes,
@@ -48,7 +48,7 @@ SELECT
     purchase_value AS revenue,
     shares,
     spend,
-    NULL AS total_conversions,
+    purchase AS total_conversions,
     views AS video_views,
     CAST(ad_id AS STRING) AS ad_id,
     CAST(adset_id AS STRING) AS adset_id,
@@ -58,6 +58,7 @@ SELECT
     CAST(NULL AS STRING) AS placement_id
 FROM {{ ref('src_ads_creative_facebook_all_data') }}
 ),
+
 
 tiktok_ads AS (
 SELECT 
